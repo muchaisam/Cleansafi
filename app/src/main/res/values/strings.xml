@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">cleansafi</string>
+    <string name="app_name">Cleansafi</string>
     <string name="new_account">New Account</string>
-    <string name="signup_desc">Start by entering your name and categorie below.</string>
+    <string name="signup_desc">Start by entering your name and your other details.</string>
 
     <string name="login_desc">Enter your login details to access your account</string>
     <string name="log_in">Log In</string>
-    <string name="message">This App will send you an SMS message for verification and standard rates apply.. Kindly enter your phone Number</string>
+    <string name="message">We will send you an SMS message for verification and standard rates apply.. Kindly enter your phone Number</string>
 
-    <string name="reset_pass_message">Seems like you forgot your password for MarksPlus. If this is true, click below to reset your password.</string>
+    <string name="reset_pass_message">Seems like you forgot your password , click below to reset your password.</string>
 </resources>
