@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_luncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MoreInfo"></activity>
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
