@@ -34,5 +34,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //otp ui
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.3'
+    //ImageCircularView
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 
 }
