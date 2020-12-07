@@ -8,4 +8,11 @@
     <string name="message">We will send you an SMS message for verification and standard rates apply.. Kindly enter your phone Number</string>
 
     <string name="reset_pass_message">Seems like you forgot your password , click below to reset your password.</string>
+    <string name="meetup_for_android_developer_s" />
+    <string name="map_location" />
+    <string name="latest" />
+    <string name="friends_go" />
+    <string name="ev_wth_friends" />
+    <string name="concerts_theater" />
+    <string name="Ironing" />
 </resources>
