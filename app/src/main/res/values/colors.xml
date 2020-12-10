@@ -11,4 +11,5 @@
     <color name="gradientLightBlue">#376DF6</color>
     <color name="white">#ffffff</color>
     <color name="grey" />
+    <color name="blue" />
 </resources>
