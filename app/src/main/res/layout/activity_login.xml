@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfheavy"
                     android:gravity="center"
                     android:text="@string/log_in"
                     android:textColor="#3c4b5d"
@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfsemibold"
                     android:gravity="center"
                     android:text="@string/login_desc"
                     android:textColor="@color/darkgrey"
@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:textSize="14sp" />
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:hint="Your Password"
                     android:inputType="textPassword"
                     android:textSize="14sp" />
@@ -103,7 +103,7 @@
                     android:id="@+id/link_forgotpassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfsemibold"
                     android:gravity="right"
                     android:text="Forgot Password?"
                     android:textColor="#b6bcc5"
@@ -119,7 +119,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="14dp"
                 android:background="@drawable/circularbluebordersolid"
-                android:fontFamily="@font/proximanovaregular"
+                android:fontFamily="@font/sfheavy"
                 android:padding="16dp"
                 android:text="Continue"
                 android:textColor="@color/white" />
@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:gravity="center"
                     android:text="No account yet?"
                     android:textColor="#3c4b5d"
@@ -145,7 +145,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:gravity="center"
                     android:text=" Create One"
                     android:textColor="#8e9cfe"

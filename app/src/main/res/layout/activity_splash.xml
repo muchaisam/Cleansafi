@@ -19,10 +19,11 @@
     <com.example.cleansafi.Utils.HeadingTextView
         android:id="@+id/app_name"
         android:text="Cleansafi"
+        android:fontFamily="@font/sfheavy"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textStyle="bold"
-        android:rotationY="40"
+        android:rotationY="34"
         android:textColor="#118AEA"
         android:textSize="65sp"
         android:layout_width="wrap_content"

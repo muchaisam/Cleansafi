@@ -44,7 +44,7 @@
                     android:id="@+id/titletxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfheavy"
                     android:gravity="center"
                     android:text="@string/new_account"
                     android:textColor="#3c4b5d"
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:gravity="center"
                     android:text="@string/signup_desc"
                     android:textColor="@color/darkgrey"
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:fontFamily="@font/proximanovaregular"
+                        android:fontFamily="@font/sfmedium"
                         android:hint="Name"
                         android:inputType="text"
                         android:textSize="14sp" />
@@ -107,7 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:fontFamily="@font/proximanovaregular"
+                        android:fontFamily="@font/sfmedium"
                         android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:textSize="14sp" />
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:fontFamily="@font/proximanovaregular"
+                        android:fontFamily="@font/sfmedium"
                         android:hint="Password"
                         android:inputType="textPassword"
                         android:textSize="14sp" />
@@ -156,6 +156,7 @@
                         android:padding="4dp"
                         android:textStyle="bold"
                         android:text="+254"
+                        android:fontFamily="@font/sfmedium"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/circularbordersolid"
                         android:textSize="14sp"
@@ -167,6 +168,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="PhoneNumber"
+                        android:fontFamily="@font/sfmedium"
                         android:textSize="14sp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/circularbordersolid"
@@ -180,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:padding="10dp"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfitalic"
                     android:text="@string/message"
                     android:textAlignment="center"
                     android:textSize="12sp"
@@ -193,7 +195,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/circularbluebordersolid"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfheavy"
                     android:padding="16dp"
                     android:text="Continue"
                     android:textColor="@color/white" />
@@ -229,7 +231,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/circularbluebordersolid"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfheavy"
                     android:padding="16dp"
                     android:text="Continue"
                     android:textColor="@color/white" />
@@ -249,7 +251,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfmedium"
                     android:gravity="center"
                     android:text="Already a member?"
                     android:textColor="#3c4b5d"
@@ -258,11 +260,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/proximanovaregular"
+                    android:fontFamily="@font/sfheavy"
                     android:gravity="center"
                     android:text=" Login"
                     android:textColor="#8e9cfe"
-                    android:textSize="16dip" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
