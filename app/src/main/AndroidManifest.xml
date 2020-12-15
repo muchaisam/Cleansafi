@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_luncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MoreInfo"></activity>
+        <activity android:name=".PaymentActivity"/>
+        <activity android:name=".CheckOutActivity" />
+        <activity android:name=".MoreInfo" />
+        <activity android:name=".PlaceOrderActivity" />
+        <activity android:name=".MapsActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
@@ -21,6 +25,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <service
+            android:name=".sevices.MPESAMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".sevices.MPESAInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
