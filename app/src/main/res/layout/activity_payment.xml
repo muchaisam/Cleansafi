@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/quantum_bluegrey100"
+    android:paddingTop="50dp"
+    tools:context=".PaymentActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="phone"
+        android:layout_margin="10dp"
+        android:id="@+id/phone"
+        android:hint="Your Phone Number"
+        android:fontFamily="@font/sfheavy"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="number"
+        android:id="@+id/amount"
+        android:layout_margin="10dp"
+        android:text="Enter Amount"
+        android:fontFamily="@font/sfsemibold"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay"
+        android:background="@color/quantum_bluegrey200"
+        android:fontFamily="@font/sfheavy"
+        android:id="@+id/pay"
+        android:enabled="false"
+        android:layout_margin="10dp" />
+
+</LinearLayout>
