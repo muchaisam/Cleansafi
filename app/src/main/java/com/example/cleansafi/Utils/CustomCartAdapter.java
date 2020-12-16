@@ -91,13 +91,7 @@ public class CustomCartAdapter extends RecyclerView.Adapter<CustomCartAdapter.Ca
                 removeItem(position);
             }
         });
-        holder.edit_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e(TAG, "onClick: dbList" + dbList.get(position).getId());
-                updateCart(position);
-            }
-        });
+
     }
 
     void removeItem(final int position) {
@@ -152,85 +146,5 @@ public class CustomCartAdapter extends RecyclerView.Adapter<CustomCartAdapter.Ca
         }
     }
 
-    void updateCart(final int position) {
-        final Dialog dialog = new Dialog(context, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
-        dialog.setContentView(R.layout.update_order_dialog);
-        topQty = dialog.findViewById(R.id.topQty);
-        lowerQty = dialog.findViewById(R.id.lowerQty);
-        bedsheetQty = dialog.findViewById(R.id.bedsheetQty);
-        otherQty = dialog.findViewById(R.id.otherQty);
-        dialog.show();
-        Button update_bucket = dialog.findViewById(R.id.update_bucket);
-
-        update_bucket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                if (dbList.get(position).getWash_only() == 1) {
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
-                    ContentValues cv = new ContentValues();
-                    top = Integer.parseInt(String.valueOf(topQty.getSelectedItem()));
-                    jeans = Integer.parseInt(String.valueOf(lowerQty.getSelectedItem()));
-                    bedsheets = Integer.parseInt(String.valueOf(bedsheetQty.getSelectedItem()));
-                    towels = Integer.parseInt(String.valueOf(otherQty.getSelectedItem()));
-                    cv.put("top_clothes", top * 50); //These Fields should be your String values of actual column names
-                    cv.put("jeans_lower", jeans * 50);
-                    cv.put("bedsheets", bedsheets * 62);
-                    cv.put("towels", towels * 80);
-                    cv.put("wash_only", 100);
-                    cv.put("final_price", top * 50 + jeans * 50 + bedsheets * 62 + towels * 80);
-
-                    db.update(TEMP_TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                    db.update(TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                    mCallback.onClick(dbList, top * 50 + jeans * 50 + bedsheets * 62 + towels *80 );
-
-                } else if (dbList.get(position).getIron_only() == 1) {
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
-                    ContentValues cv = new ContentValues();
-                    top = Integer.parseInt(String.valueOf(topQty.getSelectedItem()));
-                    jeans = Integer.parseInt(String.valueOf(lowerQty.getSelectedItem()));
-                    bedsheets = Integer.parseInt(String.valueOf(bedsheetQty.getSelectedItem()));
-                    towels = Integer.parseInt(String.valueOf(otherQty.getSelectedItem()));
-                    cv.put("top_clothes", top * 30); //These Fields should be your String values of actual column names
-                    cv.put("jeans", jeans * 30);
-                    cv.put("bedsheets", bedsheets * 30);
-                    cv.put("towels", towels * 35);
-                    cv.put("iron_only", 70);
-                    cv.put("final_price", top * 30 + jeans * 30 + bedsheets * 30 + towels * 35);
-                    db.update(TEMP_TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                    db.update(TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                    mCallback.onClick(dbList, top * 30 + jeans * 30 + bedsheets * 30 + towels * 35);
-
-                } else {
-                    if (dbList.get(position).getDoboth() == 1) {
-                        SQLiteDatabase db = dbHelper.getWritableDatabase();
-                        ContentValues cv = new ContentValues();
-                        String topp = String.valueOf(topQty.getSelectedItem());
-                        top = Integer.parseInt(String.valueOf(topQty.getSelectedItem()));
-                        jeans = Integer.parseInt(String.valueOf(lowerQty.getSelectedItem()));
-                        bedsheets = Integer.parseInt(String.valueOf(bedsheetQty.getSelectedItem()));
-                        towels = Integer.parseInt(String.valueOf(otherQty.getSelectedItem()));
-                        cv.put("top_clothes", top * 80); //These Fields should be your String values of actual column names
-                        cv.put("jeans_lower", jeans * 100);
-                        cv.put("bedsheets", bedsheets * 150);
-                        cv.put("towels", towels * 110);
-                        cv.put("doboth", 1);
-                        cv.put("final_price", top * 80 + jeans * 100 + bedsheets * 150 + towels * 110);
-
-                        db.update(TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                        db.update(TEMP_TABLE_NAME, cv, "column_id= " + dbList.get(position).getId(), null);
-                        mCallback.onClick(dbList, top * 80 + jeans * 100 + bedsheets * 150 + towels * 110);
-
-                    }
-                }
-                notifyDataSetChanged();
-                dialog.dismiss();
-                context.startActivity(new Intent(context, CheckOutActivity.class));
-
-            }
-        });
-
-    }
 
 }
