@@ -53,7 +53,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_place_order);
 //        db
         dbHelper = new DBHelper(this);
-        back_btn = findViewById(R.id.back_btn_order);
+        back_btn = findViewById(R.id.backbtn);
         cart_items_place = findViewById(R.id.cart_items_place);
         profile_btn = findViewById(R.id.go_to_profile_p);
         topQty = findViewById(R.id.topQty);
