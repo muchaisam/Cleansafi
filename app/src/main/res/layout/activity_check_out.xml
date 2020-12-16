@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
+    android:background="#fff"
     android:orientation="vertical"
     tools:context=".CheckOutActivity">
 
@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:background="@color/colorPrimary"
         android:padding="15dp">
 
         <ImageView
@@ -23,6 +22,10 @@
             android:padding="6dp"
             android:src="@drawable/backbtn" />
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
 
         <TextView
@@ -33,6 +36,10 @@
             android:textColor="#424242"
             android:textSize="17sp" />
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
