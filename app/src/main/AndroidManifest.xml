@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_luncher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UpdateProfile"/>
         <activity android:name=".PaymentActivity"/>
         <activity android:name=".CheckOutActivity" />
         <activity android:name=".MoreInfo" />
