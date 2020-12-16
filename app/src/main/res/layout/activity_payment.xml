@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@color/quantum_bluegrey100"
-    android:paddingTop="50dp"
+    android:paddingTop="20dp"
+    android:background="#fff"
     tools:context=".PaymentActivity">
 
+    <!--    Header-->
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="6dp"
+            android:src="@drawable/backbtn" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MPESA Payment"
+            android:fontFamily="@font/sfheavy"
+            android:textColor="#424242"
+            android:textSize="17sp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_more_vert_black_24dp" />
+
+
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -25,7 +66,7 @@
         android:inputType="number"
         android:id="@+id/amount"
         android:layout_margin="10dp"
-        android:text="Enter Amount"
+        android:hint="Enter Amount"
         android:fontFamily="@font/sfsemibold"
         android:layout_height="wrap_content" />
 
@@ -33,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pay"
-        android:background="@color/quantum_bluegrey200"
+        android:background="@color/gradientLightBlue"
         android:fontFamily="@font/sfheavy"
         android:id="@+id/pay"
         android:enabled="false"
