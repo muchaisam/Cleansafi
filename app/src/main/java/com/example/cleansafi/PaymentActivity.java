@@ -51,6 +51,7 @@ public class PaymentActivity extends AppCompatActivity implements AuthListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
         setContentView(R.layout.activity_payment);
         pay = (Button)findViewById(R.id.pay);
         phone = (EditText)findViewById(R.id.phone);

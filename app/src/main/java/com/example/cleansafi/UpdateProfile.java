@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,10 +16,12 @@ public class UpdateProfile extends AppCompatActivity {
     LinearLayout personalinfo, history, review;
     TextView personalinfobtn, historybtn, reviewbtn, updateprofilebtn;
     ImageView backbtn;
+    Button editbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
         setContentView(R.layout.activity_update_profile);
 
         personalinfo = findViewById(R.id.personalinfo);
@@ -33,6 +36,13 @@ public class UpdateProfile extends AppCompatActivity {
         personalinfo.setVisibility(View.VISIBLE);
         history.setVisibility(View.VISIBLE);
         review.setVisibility(View.VISIBLE);
+
+
+        editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override

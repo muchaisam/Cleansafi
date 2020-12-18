@@ -43,6 +43,7 @@ public class CheckOutActivity extends AppCompatActivity implements OnItemClick {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
         setContentView(R.layout.activity_check_out);
         dbHelper = new DBHelper(this);
         dbModelList = dbHelper.getDataFromDbForHistory();

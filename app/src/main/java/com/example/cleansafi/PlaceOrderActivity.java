@@ -50,6 +50,7 @@ public class PlaceOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_fade_out);
         setContentView(R.layout.activity_place_order);
 //        db
         dbHelper = new DBHelper(this);
@@ -272,9 +273,9 @@ public class PlaceOrderActivity extends AppCompatActivity {
     }
 
     public void lowerDec(View view) {
-        if (lowerCount == 0) {
-            lowerCount = 0;
-            Toast.makeText(getApplicationContext(), "Can't be less than 0", Toast.LENGTH_SHORT).show();
+        if (lowerCount == 12) {
+            lowerCount = 12;
+            Toast.makeText(getApplicationContext(), "Can't be more than 12", Toast.LENGTH_SHORT).show();
         } else {
             lowerCount = lowerCount - 1;
             displayLower(lowerCount);
