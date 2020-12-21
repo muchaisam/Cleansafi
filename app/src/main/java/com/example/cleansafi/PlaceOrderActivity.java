@@ -156,10 +156,10 @@ public class PlaceOrderActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.ironRB:
                 if (checked) {
-                    displayTopPrice(topCount * 3);
-                    displayLowerPrice(lowerCount * 3);
-                    displayBedsheetPrice(bedsheetCount * 3);
-                    displayOtherPrice(otherCount * 3);
+                    displayTopPrice(topCount * 30);
+                    displayLowerPrice(lowerCount * 40);
+                    displayBedsheetPrice(bedsheetCount * 50);
+                    displayOtherPrice(otherCount * 60);
                     iron = 1;
                     wash = 0;
                     do_both = 0;
@@ -168,10 +168,10 @@ public class PlaceOrderActivity extends AppCompatActivity {
             case R.id.washRB:
                 if (checked) {
 
-                    displayTopPrice(topCount * 100);
+                    displayTopPrice(topCount * 40);
                     displayLowerPrice(lowerCount * 50);
-                    displayBedsheetPrice(bedsheetCount * 40);
-                    displayOtherPrice(otherCount * 50);
+                    displayBedsheetPrice(bedsheetCount * 60);
+                    displayOtherPrice(otherCount * 70);
                     iron = 0;
                     wash = 1;
                     do_both = 0;
@@ -180,10 +180,10 @@ public class PlaceOrderActivity extends AppCompatActivity {
             case R.id.bothRB:
                 if (checked) {
 
-                    displayTopPrice(topCount * 38);
-                    displayLowerPrice(lowerCount * 30);
-                    displayBedsheetPrice(bedsheetCount * 45);
-                    displayOtherPrice(otherCount * 40);
+                    displayTopPrice(topCount * 50);
+                    displayLowerPrice(lowerCount * 60);
+                    displayBedsheetPrice(bedsheetCount * 70);
+                    displayOtherPrice(otherCount * 80);
                     iron = 0;
                     wash = 0;
                     do_both = 1;
