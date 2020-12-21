@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/sfsemibold"
-                        android:text="Muchai Sam"
+                        android:text="Bernard Shibabwo"
                         android:textColor="#424242"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -255,7 +255,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="+254712345678"
+                                android:text="+254703034135"
                                 android:textSize="15sp"
                                 android:textColor="@color/gradientLightBlue"
                                 android:fontFamily="@font/sfregular" />
@@ -280,7 +280,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:textColor="@color/gradientLightBlue"
-                                android:text="muchaisam@gmail.com"
+                                android:text="bshibwabwo@strathmore.edu"
                                 android:textSize="15sp"
                                 android:fontFamily="@font/sfmedium" />
                         </LinearLayout>
@@ -303,7 +303,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
-                                android:text="South B, Kenya"
+                                android:text="Madaraka, Kenya"
                                 android:textSize="15sp"
                                 android:textColor="@color/gradientLightBlue"
                                 android:fontFamily="@font/sfmedium" />
