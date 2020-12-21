@@ -44,7 +44,7 @@ dependencies {
 
     //f
     implementation 'com.google.firebase:firebase-core:18.0.0'
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
 //    implementation project(':mpesa')
     implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
 }
