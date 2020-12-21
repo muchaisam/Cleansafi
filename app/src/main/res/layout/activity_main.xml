@@ -287,7 +287,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Most popular"
+                    android:text="Place your order now"
                     android:fontFamily="@font/sfsemibold"
                     android:textColor="#1F95F3"
                     android:textSize="17sp"
@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="15dp"
-                    android:text="Washing and Ironing"
+                    android:text="Service Information"
                     android:fontFamily="@font/sfsemibold"
                     android:transitionName="title"
                     android:textColor="@color/white"
