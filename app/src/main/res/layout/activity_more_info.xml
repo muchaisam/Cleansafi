@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category Info"
+            android:text="Service Info"
             android:fontFamily="@font/sfheavy"
             android:textColor="#424242"
             android:textSize="17sp" />
@@ -89,7 +89,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/sfmedium"
-                        android:text="Washing and Ironing"
+                        android:text="Service Information"
                         android:textColor="@color/white"
                         android:textSize="28sp"
                         android:textStyle="bold"
@@ -325,8 +325,8 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:paddingBottom="150dp"
-                android:fontFamily="@font/sfitalic"
-                android:text="Washing and Ironing go hand in hand.Ensure your clothes are clean and their quality is maintained with us."
+                android:fontFamily="@font/sfheavy"
+                android:text=" 'Cleansafi, Kazi Safi.' "
                 android:textColor="@color/grey"
                 android:textSize="14sp" />
 
