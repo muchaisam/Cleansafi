@@ -60,7 +60,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Set Listeners
         link_signup.setOnClickListener(this);
-        link_forgotpassword.setOnClickListener(this);
+        link_forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+
+            }
+        });
         btn_login.setOnClickListener(this);
     }
 
@@ -98,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             else{
                                 // start main activity
                                 finish();
+                                Toast.makeText(LoginActivity.this, "Welcome to Cleansafi. Place your order now.", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             }
                         }
