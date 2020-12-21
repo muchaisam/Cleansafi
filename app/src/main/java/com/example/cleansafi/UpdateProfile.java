@@ -16,7 +16,6 @@ public class UpdateProfile extends AppCompatActivity {
     LinearLayout personalinfo, history, review;
     TextView personalinfobtn, historybtn, reviewbtn, updateprofilebtn;
     ImageView backbtn;
-    Button editbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +37,6 @@ public class UpdateProfile extends AppCompatActivity {
         review.setVisibility(View.VISIBLE);
 
 
-        editbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
