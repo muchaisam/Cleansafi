@@ -7,14 +7,32 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,11 +54,11 @@ fun OnboardingScreen(
     val pagerState = rememberPagerState(pageCount = { onboardingPages.size })
     val scope = rememberCoroutineScope()
     val haptic = rememberHapticFeedback()
-    
+
     LaunchedEffect(pagerState.currentPage) {
         viewModel.onPageChange(pagerState.currentPage)
     }
-    
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -67,9 +85,9 @@ fun OnboardingScreen(
                     Text("Skip")
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             // Pager
             HorizontalPager(
                 state = pagerState,
@@ -80,9 +98,9 @@ fun OnboardingScreen(
                     modifier = Modifier.fillMaxSize()
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             // Page indicators
             Row(
                 horizontalArrangement = Arrangement.Center,
@@ -104,9 +122,9 @@ fun OnboardingScreen(
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Action buttons
             AnimatedVisibility(
                 visible = pagerState.currentPage == onboardingPages.size - 1,
@@ -128,7 +146,7 @@ fun OnboardingScreen(
                     Icon(Icons.Default.ArrowForward, contentDescription = null)
                 }
             }
-            
+
             AnimatedVisibility(
                 visible = pagerState.currentPage < onboardingPages.size - 1,
                 enter = fadeIn(animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)),
@@ -154,9 +172,9 @@ fun OnboardingScreen(
                     ) {
                         Text("Previous")
                     }
-                    
+
                     Spacer(modifier = Modifier.width(16.dp))
-                    
+
                     Button(
                         onClick = {
                             haptic.click()
@@ -174,7 +192,7 @@ fun OnboardingScreen(
                     }
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
@@ -196,9 +214,9 @@ private fun OnboardingPageContent(
             modifier = Modifier.size(120.dp),
             textAlign = TextAlign.Center
         )
-        
+
         Spacer(modifier = Modifier.height(48.dp))
-        
+
         Text(
             text = page.title,
             style = MaterialTheme.typography.headlineMedium,
@@ -206,9 +224,9 @@ private fun OnboardingPageContent(
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onBackground
         )
-        
+
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Text(
             text = page.description,
             style = MaterialTheme.typography.bodyLarge,
