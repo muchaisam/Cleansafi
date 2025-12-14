@@ -19,7 +19,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject lateinit var themeManager: ThemeManager
+    @Inject
+    lateinit var themeManager: ThemeManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Install splash screen BEFORE super.onCreate()
@@ -34,8 +35,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             CleanSafiTheme(darkTheme = themeManager.isDarkTheme) {
                 Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
                 ) { AppNavigation(initialOrderId = orderId.takeIf { it > 0 }) }
             }
         }
