@@ -2,7 +2,6 @@ package com.cleansafi.presentation.cart
 
 import com.cleansafi.domain.model.CartItem
 import com.cleansafi.domain.model.LaundryItemType
-import com.cleansafi.domain.model.ServiceType
 
 data class CartState(
     val items: List<CartItem> = emptyList(),
