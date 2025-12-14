@@ -88,9 +88,10 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
 
         // Upsell: Suggest premium items if only basic
         if (currentTypes.size < 3) {
+            val suggestedTypes = suggestions.map { it.itemType }.toSet()
             val notInCart =
                     com.cleansafi.domain.model.LaundryItemType.entries.filter {
-                        it !in currentTypes
+                        it !in currentTypes && it !in suggestedTypes
                     }
             notInCart.take(2).forEach { itemType ->
                 suggestions.add(
@@ -103,7 +104,7 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
             }
         }
 
-        return suggestions.take(3) // Show max 3 suggestions
+        return suggestions.distinctBy { it.itemType }.take(3) // Show max 3 unique suggestions
     }
 
     fun addSuggestedItem(itemType: com.cleansafi.domain.model.LaundryItemType) {
