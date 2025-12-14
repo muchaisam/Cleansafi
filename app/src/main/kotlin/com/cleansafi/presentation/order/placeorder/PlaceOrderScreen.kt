@@ -1,12 +1,38 @@
 package com.cleansafi.presentation.order.placeorder
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -17,9 +43,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.cleansafi.domain.model.LaundryItemType
 import com.cleansafi.domain.model.ServiceType
-import androidx.compose.ui.layout.ContentScale
-import java.text.SimpleDateFormat
-import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -147,169 +170,168 @@ fun PlaceOrderScreen(
                 Spacer(modifier = Modifier.height(100.dp))
             }
 
-        com.cleansafi.core.ui.OfflineIndicator(
-            networkMonitor = networkMonitor,
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
-    }
-}
-
-@Composable
-private fun ServiceTypeSelector(
-        selectedService: ServiceType,
-        onServiceSelected: (ServiceType) -> Unit
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            ServiceType.entries.forEach { serviceType ->
-                ServiceTypeCard(
-                    serviceType = serviceType,
-                    isSelected = selectedService == serviceType,
-                    onSelect = { onServiceSelected(serviceType) }
-                )
-            }
+            com.cleansafi.core.ui.OfflineIndicator(
+                networkMonitor = networkMonitor,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
         }
     }
 }
 
 @Composable
-private fun ServiceTypeCard(
-        serviceType: ServiceType,
-        isSelected: Boolean,
-        onSelect: () -> Unit
+private fun ServiceTypeSelector(
+    selectedService: ServiceType,
+    onServiceSelected: (ServiceType) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            onClick = onSelect,
-            colors = CardDefaults.cardColors(
-                containerColor = if (isSelected)
-                    MaterialTheme.colorScheme.primaryContainer
-                else
-                    MaterialTheme.colorScheme.surface
-            ),
-            border = if (isSelected)
-                CardDefaults.outlinedCardBorder()
-            else null
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = when (serviceType) {
-                            ServiceType.WASH_ONLY -> "Wash Only"
-                            ServiceType.IRON_ONLY -> "Iron Only"
-                            ServiceType.WASH_AND_IRON -> "Wash & Iron"
-                        },
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                    )
-                    Text(
-                        text = when (serviceType) {
-                            ServiceType.WASH_ONLY -> "Professional washing service"
-                            ServiceType.IRON_ONLY -> "Expert ironing service"
-                            ServiceType.WASH_AND_IRON -> "Complete laundry service"
-                        },
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
+        ServiceType.entries.forEach { serviceType ->
+            ServiceTypeCard(
+                serviceType = serviceType,
+                isSelected = selectedService == serviceType,
+                onSelect = { onServiceSelected(serviceType) }
+            )
+        }
+    }
+}
 
-                RadioButton(
-                    selected = isSelected,
-                    onClick = onSelect
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ServiceTypeCard(
+    serviceType: ServiceType,
+    isSelected: Boolean,
+    onSelect: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onSelect,
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected)
+                MaterialTheme.colorScheme.primaryContainer
+            else
+                MaterialTheme.colorScheme.surface
+        ),
+        border = if (isSelected)
+            CardDefaults.outlinedCardBorder()
+        else null
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = when (serviceType) {
+                        ServiceType.WASH_ONLY -> "Wash Only"
+                        ServiceType.IRON_ONLY -> "Iron Only"
+                        ServiceType.WASH_AND_IRON -> "Wash & Iron"
+                    },
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                )
+                Text(
+                    text = when (serviceType) {
+                        ServiceType.WASH_ONLY -> "Professional washing service"
+                        ServiceType.IRON_ONLY -> "Expert ironing service"
+                        ServiceType.WASH_AND_IRON -> "Complete laundry service"
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+
+            RadioButton(
+                selected = isSelected,
+                onClick = onSelect
+            )
         }
     }
 }
 
 @Composable
 private fun LaundryItemCard(
-        itemType: LaundryItemType,
-        quantity: Int,
-        pricePerItem: Int,
-        onIncrement: () -> Unit,
-        onDecrement: () -> Unit
+    itemType: LaundryItemType,
+    quantity: Int,
+    pricePerItem: Int,
+    onIncrement: () -> Unit,
+    onDecrement: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = if (quantity > 0)
+                MaterialTheme.colorScheme.secondaryContainer
+            else
+                MaterialTheme.colorScheme.surface
+        )
     ) {
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = if (quantity > 0)
-                    MaterialTheme.colorScheme.secondaryContainer
-                else
-                    MaterialTheme.colorScheme.surface
-            )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = itemType.displayName,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Text(
-                        text = "KSh $pricePerItem per item",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.primary
-                    )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = itemType.displayName,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Medium
+                )
+                Text(
+                    text = "KSh $pricePerItem per item",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
 
-                    AnimatedVisibility(visible = quantity > 0) {
-                        Text(
-                            text = "Subtotal: KSh ${pricePerItem * quantity}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
+                AnimatedVisibility(visible = quantity > 0) {
+                    Text(
+                        text = "Subtotal: KSh ${pricePerItem * quantity}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                IconButton(
+                    onClick = onDecrement,
+                    enabled = quantity > 0
+                ) {
+                    Icon(
+                        Icons.Default.Remove,
+                        contentDescription = "Decrease",
+                        tint = if (quantity > 0)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                    )
                 }
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    IconButton(
-                        onClick = onDecrement,
-                        enabled = quantity > 0
-                    ) {
-                        Icon(
-                            Icons.Default.Remove,
-                            contentDescription = "Decrease",
-                            tint = if (quantity > 0)
-                                MaterialTheme.colorScheme.primary
-                            else
-                                MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-                        )
-                    }
+                Text(
+                    text = quantity.toString(),
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.widthIn(min = 32.dp)
+                )
 
-                    Text(
-                        text = quantity.toString(),
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.widthIn(min = 32.dp)
+                IconButton(onClick = onIncrement) {
+                    Icon(
+                        Icons.Default.Add,
+                        contentDescription = "Increase",
+                        tint = MaterialTheme.colorScheme.primary
                     )
-
-                    IconButton(onClick = onIncrement) {
-                        Icon(
-                            Icons.Default.Add,
-                            contentDescription = "Increase",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
                 }
             }
         }
     }
-}
 }
