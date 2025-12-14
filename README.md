@@ -273,11 +273,37 @@ Each stage includes:
 - Email notifications (simulated)
 - Real-time UI updates
 
-### 3. **Offline-First Architecture**
-- Room database for local persistence
-- Network state monitoring
-- Graceful degradation with offline indicators
-- Automatic sync when connection restored
+### 3. **Offline-First Architecture with Room Database**
+All data is persisted locally using Room database, making the app fully functional without an internet connection:
+
+```kotlin
+// Room Database with multiple DAOs for complete offline functionality
+@Database(
+    entities = [UserEntity, OrderEntity, OrderItemEntity, CartItemEntity, PaymentEntity],
+    version = 1
+)
+abstract class CleanSafiDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+    abstract fun orderDao(): OrderDao
+    abstract fun cartDao(): CartDao
+    abstract fun paymentDao(): PaymentDao
+}
+```
+
+**What works offline:**
+- ✅ User registration and login (credentials stored locally)
+- ✅ Browse services and add items to cart
+- ✅ Place orders and schedule pickups
+- ✅ View complete order history with status timeline
+- ✅ Track spending statistics (Profile & Orders screens)
+- ✅ M-PESA payment simulation
+- ✅ Theme preferences persist across sessions
+
+**Why this matters:**
+- 🚀 **Instant app startup** - No network calls needed
+- 📱 **Works in low-connectivity areas** - Critical for Kenya/Africa markets
+- 💾 **Data never lost** - SQLite persistence survives app kills
+- 🔄 **Reactive UI updates** - Flow-based observation of database changes
 
 ### 4. **Error Handling Strategy**
 ```kotlin
