@@ -28,13 +28,21 @@ enum class OrderStatus(
     DELIVERED("Delivered", "Successfully delivered to you", "📦"),
     COMPLETED("Completed", "Order completed", "🎉"),
     CANCELLED("Cancelled", "Order was cancelled", "🚫");
-    
+
     val isActive: Boolean
         get() = this !in listOf(COMPLETED, CANCELLED, PAYMENT_FAILED)
-    
+
     val canProgress: Boolean
-        get() = this in listOf(PENDING, CONFIRMED, PICKED_UP, PROCESSING, READY, OUT_FOR_DELIVERY, DELIVERED)
-    
+        get() = this in listOf(
+            PENDING,
+            CONFIRMED,
+            PICKED_UP,
+            PROCESSING,
+            READY,
+            OUT_FOR_DELIVERY,
+            DELIVERED
+        )
+
     fun nextStatus(): OrderStatus? = when (this) {
         PENDING -> CONFIRMED
         CONFIRMED -> PICKED_UP
