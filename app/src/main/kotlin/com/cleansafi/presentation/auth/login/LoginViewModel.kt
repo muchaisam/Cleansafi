@@ -17,24 +17,24 @@ class LoginViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val preferencesManager: PreferencesManager
 ) : ViewModel() {
-    
+
     private val _state = MutableStateFlow(LoginState())
     val state = _state.asStateFlow()
-    
+
     fun onEmailChange(email: String) {
         _state.update { it.copy(email = email, emailError = null, error = null) }
     }
-    
+
     fun onPasswordChange(password: String) {
         _state.update { it.copy(password = password, passwordError = null, error = null) }
     }
-    
+
     fun onLoginClick() {
         if (!validateInputs()) return
-        
+
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
-            
+
             userRepository.login(
                 email = _state.value.email.trim(),
                 password = _state.value.password
@@ -51,20 +51,20 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-    
+
     private fun validateInputs(): Boolean {
         val email = _state.value.email.trim()
         val password = _state.value.password
-        
+
         var isValid = true
-        
+
         // Validate email
         val emailValidation = Validators.validateEmail(email)
         if (!emailValidation.isValid) {
             _state.update { it.copy(emailError = emailValidation.errorMessage) }
             isValid = false
         }
-        
+
         // Validate password
         val passwordValidation = Validators.validateRequired(password, "Password")
         if (!passwordValidation.isValid) {
@@ -74,10 +74,10 @@ class LoginViewModel @Inject constructor(
             _state.update { it.copy(passwordError = "Password must be at least 6 characters") }
             isValid = false
         }
-        
+
         return isValid
     }
-    
+
     fun retry() {
         onLoginClick()
     }
