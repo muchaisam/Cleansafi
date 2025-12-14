@@ -14,11 +14,11 @@ class PreferencesManager @Inject constructor(
         PREFS_NAME,
         Context.MODE_PRIVATE
     )
-    
+
     var currentUserId: String?
         get() = prefs.getString(KEY_USER_ID, null)
         set(value) = prefs.edit().putString(KEY_USER_ID, value).apply()
-    
+
     var isLoggedIn: Boolean
         get() = currentUserId != null
         set(value) {
@@ -26,15 +26,15 @@ class PreferencesManager @Inject constructor(
                 currentUserId = null
             }
         }
-    
+
     var hasCompletedOnboarding: Boolean
         get() = prefs.getBoolean(KEY_ONBOARDING_COMPLETED, false)
         set(value) = prefs.edit().putBoolean(KEY_ONBOARDING_COMPLETED, value).apply()
-    
+
     fun clear() {
         prefs.edit().clear().apply()
     }
-    
+
     companion object {
         private const val PREFS_NAME = "cleansafi_prefs"
         private const val KEY_USER_ID = "user_id"
