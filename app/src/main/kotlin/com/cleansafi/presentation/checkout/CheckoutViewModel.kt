@@ -9,19 +9,19 @@ import com.cleansafi.domain.model.OrderStatus
 import com.cleansafi.domain.repository.CartRepository
 import com.cleansafi.domain.repository.OrderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class CheckoutViewModel
 @Inject
 constructor(
-        private val cartRepository: CartRepository,
-        private val orderRepository: OrderRepository,
-        private val preferencesManager: PreferencesManager
+    private val cartRepository: CartRepository,
+    private val orderRepository: OrderRepository,
+    private val preferencesManager: PreferencesManager
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CheckoutState())
@@ -85,48 +85,48 @@ constructor(
 
             try {
                 val userId =
-                        preferencesManager.currentUserId ?: throw Exception("User not logged in")
+                    preferencesManager.currentUserId ?: throw Exception("User not logged in")
 
                 val order =
-                        Order(
-                                userId = userId,
-                                items =
-                                        _state.value.items.map { cartItem ->
-                                            OrderItem(
-                                                    itemType = cartItem.itemType,
-                                                    quantity = cartItem.quantity,
-                                                    serviceType = cartItem.serviceType,
-                                                    pricePerItem = cartItem.pricePerItem
-                                            )
-                                        },
-                                totalPrice = _state.value.totalPrice,
-                                status = OrderStatus.PENDING,
-                                scheduledDate = _state.value.selectedDate!!,
-                                scheduledTime = _state.value.selectedTime!!,
-                                createdAt = System.currentTimeMillis()
-                        )
+                    Order(
+                        userId = userId,
+                        items =
+                        _state.value.items.map { cartItem ->
+                            OrderItem(
+                                itemType = cartItem.itemType,
+                                quantity = cartItem.quantity,
+                                serviceType = cartItem.serviceType,
+                                pricePerItem = cartItem.pricePerItem
+                            )
+                        },
+                        totalPrice = _state.value.totalPrice,
+                        status = OrderStatus.PENDING,
+                        scheduledDate = _state.value.selectedDate!!,
+                        scheduledTime = _state.value.selectedTime!!,
+                        createdAt = System.currentTimeMillis()
+                    )
 
                 orderRepository
-                        .createOrder(order)
-                        .onSuccess { orderId ->
-                            // Clear cart after successful order
-                            cartRepository.clearCart()
-                            _state.update {
-                                it.copy(
-                                        isProcessing = false,
-                                        orderPlacedSuccessfully = true,
-                                        createdOrderId = orderId
-                                )
-                            }
+                    .createOrder(order)
+                    .onSuccess { orderId ->
+                        // Clear cart after successful order
+                        cartRepository.clearCart()
+                        _state.update {
+                            it.copy(
+                                isProcessing = false,
+                                orderPlacedSuccessfully = true,
+                                createdOrderId = orderId
+                            )
                         }
-                        .onFailure { exception ->
-                            _state.update {
-                                it.copy(
-                                        isProcessing = false,
-                                        error = exception.message ?: "Failed to place order"
-                                )
-                            }
+                    }
+                    .onFailure { exception ->
+                        _state.update {
+                            it.copy(
+                                isProcessing = false,
+                                error = exception.message ?: "Failed to place order"
+                            )
                         }
+                    }
             } catch (e: Exception) {
                 _state.update {
                     it.copy(isProcessing = false, error = e.message ?: "Failed to place order")
