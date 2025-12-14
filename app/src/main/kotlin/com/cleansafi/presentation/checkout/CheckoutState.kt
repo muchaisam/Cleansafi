@@ -16,7 +16,7 @@ data class CheckoutState(
 ) {
     val canProceed: Boolean
         get() = items.isNotEmpty() && selectedDate != null && selectedTime != null
-    
+
     val serviceType: String
         get() = items.firstOrNull()?.serviceType?.name ?: ""
 }
