@@ -25,7 +25,11 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(onNavigateToOnboarding: () -> Unit, onNavigateToAuth: () -> Unit) {
+fun SplashScreen(
+        onNavigateToOnboarding: () -> Unit,
+        onNavigateToAuth: () -> Unit,
+        onNavigateToHome: () -> Unit
+) {
         val context = androidx.compose.ui.platform.LocalContext.current
         val preferencesManager = remember { com.cleansafi.core.util.PreferencesManager(context) }
         val scale = remember { Animatable(0f) }
@@ -42,11 +46,14 @@ fun SplashScreen(onNavigateToOnboarding: () -> Unit, onNavigateToAuth: () -> Uni
                 // Small delay then navigate
                 delay(800)
 
-                // Check if onboarding is completed
-                if (preferencesManager.hasCompletedOnboarding) {
-                        onNavigateToAuth()
-                } else {
-                        onNavigateToOnboarding()
+                // Check navigation destination based on user state
+                when {
+                        // User is already logged in - go to home
+                        preferencesManager.isLoggedIn -> onNavigateToHome()
+                        // User completed onboarding but not logged in - go to login
+                        preferencesManager.hasCompletedOnboarding -> onNavigateToAuth()
+                        // First time user - show onboarding
+                        else -> onNavigateToOnboarding()
                 }
         }
 
