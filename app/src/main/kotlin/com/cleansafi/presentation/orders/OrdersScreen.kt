@@ -52,9 +52,8 @@ fun OrdersScreen(onNavigateBack: () -> Unit, viewModel: OrdersViewModel = hiltVi
                 items(5) { com.cleansafi.core.ui.ShimmerOrderCard() }
             }
         } else if (state.error != null) {
-            val currentError = state.error
             com.cleansafi.core.error.ErrorView(
-                    error = currentError,
+                    error = state.error!!,
                     onRetry = viewModel::retry,
                     modifier = Modifier.fillMaxSize().padding(paddingValues)
             )
@@ -135,9 +134,12 @@ fun StatsCard(totalOrders: Int, totalSpent: Int) {
                     value = totalOrders.toString()
             )
 
-            HorizontalDivider(
-                    modifier = Modifier.height(60.dp).width(1.dp),
-                    color = MaterialTheme.colorScheme.outlineVariant
+            // After
+            Divider(
+                modifier = Modifier
+                    .height(60.dp)
+                    .width(1.dp),
+                color = MaterialTheme.colorScheme.outlineVariant
             )
 
             StatItem(
