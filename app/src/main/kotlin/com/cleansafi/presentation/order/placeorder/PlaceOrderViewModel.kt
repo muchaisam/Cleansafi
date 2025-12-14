@@ -145,9 +145,7 @@ constructor(
 
                 _state.update { it.copy(isLoading = false) }
             } catch (e: Exception) {
-                _state.update {
-                    it.copy(isLoading = false, error = com.cleansafi.core.error.toAppError(e))
-                }
+                _state.update { it.copy(isLoading = false, error = e.toAppError()) }
             }
         }
     }
