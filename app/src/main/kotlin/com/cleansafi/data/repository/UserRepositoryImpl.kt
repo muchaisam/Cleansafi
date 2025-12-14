@@ -16,15 +16,15 @@ import javax.inject.Singleton
 class UserRepositoryImpl @Inject constructor(
     private val userDao: UserDao
 ) : UserRepository {
-    
+
     override suspend fun getUserById(userId: String): User? {
         return userDao.getUserById(userId)?.toDomain()
     }
-    
+
     override suspend fun getUserByEmail(email: String): User? {
         return userDao.getUserByEmail(email)?.toDomain()
     }
-    
+
     override suspend fun createUser(
         email: String,
         password: String,
@@ -36,7 +36,7 @@ class UserRepositoryImpl @Inject constructor(
             if (userDao.getUserByEmail(email) != null) {
                 return Result.failure(Exception("Email already registered"))
             }
-            
+
             val userId = UUID.randomUUID().toString()
             val passwordHash = hashPassword(password)
             val user = User(
@@ -45,34 +45,34 @@ class UserRepositoryImpl @Inject constructor(
                 name = name,
                 phoneNumber = phoneNumber
             )
-            
+
             userDao.insertUser(user.toEntity(passwordHash, System.currentTimeMillis()))
             Result.success(user)
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
-    
+
     override suspend fun login(email: String, password: String): Result<User> {
         return try {
             val userEntity = userDao.getUserByEmail(email)
                 ?: return Result.failure(Exception("User not found"))
-            
+
             val passwordHash = hashPassword(password)
             if (userEntity.passwordHash != passwordHash) {
                 return Result.failure(Exception("Invalid password"))
             }
-            
+
             Result.success(userEntity.toDomain())
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
-    
+
     override suspend fun updateUser(user: User) {
         val existingEntity = userDao.getUserById(user.userId)
             ?: throw Exception("User not found")
-        
+
         userDao.updateUser(
             user.toEntity(
                 passwordHash = existingEntity.passwordHash,
@@ -80,15 +80,15 @@ class UserRepositoryImpl @Inject constructor(
             )
         )
     }
-    
+
     override suspend fun deleteUser(userId: String) {
         userDao.getUserById(userId)?.let { userDao.deleteUser(it) }
     }
-    
+
     override fun observeCurrentUser(userId: String): Flow<User?> {
         return userDao.observeUser(userId).map { it?.toDomain() }
     }
-    
+
     private fun hashPassword(password: String): String {
         val digest = MessageDigest.getInstance("SHA-256")
         val hash = digest.digest(password.toByteArray())
