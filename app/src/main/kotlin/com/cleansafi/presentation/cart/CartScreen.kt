@@ -123,7 +123,7 @@ fun CartScreen(
                         )
                     }
 
-                    items(items = state.items, key = { it.itemType }) { item ->
+                    items(items = state.items, key = { "cart_${it.itemType}" }) { item ->
                         val dismissState =
                                 rememberDismissState(
                                         confirmValueChange = {
@@ -183,7 +183,8 @@ fun CartScreen(
                             )
                         }
 
-                        items(items = state.suggestedItems, key = { it.itemType }) { suggestion ->
+                        items(items = state.suggestedItems, key = { "suggested_${it.itemType}" }) {
+                                suggestion ->
                             SuggestedItemCard(
                                     suggestion = suggestion,
                                     onAdd = {
