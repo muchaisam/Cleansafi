@@ -1,23 +1,27 @@
 <resources>
     <string name="app_name">Cleansafi</string>
-    <string name="new_account">New Account</string>
-    <string name="signup_desc">Start by entering your email to register your account</string>
 
-    <string name="login_desc">Enter your login details to access your account</string>
-    <string name="log_in">Log In</string>
-    <string name="message">Kindly check your email to verify your account</string>
+    <!-- Auth -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Log In</string>
+    <string name="signup">Sign Up</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
 
-    <string name="reset_pass_message">Seems like you forgot your password , click below to reset your password.</string>
-    <string name="laundry" />
-    <string name="map_location" />
-    <string name="latest" />
-    <string name="popular" />
-    <string name="Ironing" />
-    <string name="title_activity_maps">Map</string>
-    <string name="action_geolocate">Pick Place</string>
-    <string name="default_info_title">Default Location</string>
-    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
-    <string name="contact" />
-    <string name="samplereview">Reviews</string>
-    <string name="appbar_scrolling_view_behavior" />
+    <!-- Common -->
+    <string name="continue_text">Continue</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading…</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_network">No internet connection</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_dont_match">Passwords don\'t match</string>
 </resources>
