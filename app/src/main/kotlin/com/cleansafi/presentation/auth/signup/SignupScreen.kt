@@ -3,15 +3,41 @@ package com.cleansafi.presentation.auth.signup
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -35,13 +61,13 @@ fun SignupScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val focusManager = LocalFocusManager.current
-    
+
     LaunchedEffect(state.isSignupSuccess) {
         if (state.isSignupSuccess) {
             onNavigateToHome()
         }
     }
-    
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -62,22 +88,22 @@ fun SignupScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             Text(
                 text = "Create Account",
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
-            
+
             Text(
                 text = "Join CleanSafi today",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            
+
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             // Name Field
             OutlinedTextField(
                 value = state.name,
@@ -95,7 +121,7 @@ fun SignupScreen(
                 ),
                 isError = state.nameError != null
             )
-            
+
             AnimatedVisibility(visible = state.nameError != null) {
                 Text(
                     text = state.nameError ?: "",
@@ -106,9 +132,9 @@ fun SignupScreen(
                         .padding(start = 16.dp, top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Email Field
             OutlinedTextField(
                 value = state.email,
@@ -126,7 +152,7 @@ fun SignupScreen(
                 ),
                 isError = state.emailError != null
             )
-            
+
             AnimatedVisibility(visible = state.emailError != null) {
                 Text(
                     text = state.emailError ?: "",
@@ -137,9 +163,9 @@ fun SignupScreen(
                         .padding(start = 16.dp, top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Phone Number Field
             OutlinedTextField(
                 value = state.phoneNumber,
@@ -157,7 +183,7 @@ fun SignupScreen(
                 ),
                 isError = state.phoneNumberError != null
             )
-            
+
             AnimatedVisibility(visible = state.phoneNumberError != null) {
                 Text(
                     text = state.phoneNumberError ?: "",
@@ -168,23 +194,23 @@ fun SignupScreen(
                         .padding(start = 16.dp, top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Password Field
             var passwordVisible by remember { mutableStateOf(false) }
-            
+
             OutlinedTextField(
                 value = state.password,
                 onValueChange = viewModel::onPasswordChange,
                 label = { Text("Password") },
-                visualTransformation = if (passwordVisible) VisualTransformation.None 
-                    else PasswordVisualTransformation(),
+                visualTransformation = if (passwordVisible) VisualTransformation.None
+                else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
-                            imageVector = if (passwordVisible) Icons.Default.Visibility 
-                                else Icons.Default.VisibilityOff,
+                            imageVector = if (passwordVisible) Icons.Default.Visibility
+                            else Icons.Default.VisibilityOff,
                             contentDescription = if (passwordVisible) "Hide password" else "Show password"
                         )
                     }
@@ -200,7 +226,7 @@ fun SignupScreen(
                 ),
                 isError = state.passwordError != null
             )
-            
+
             AnimatedVisibility(visible = state.passwordError != null) {
                 Text(
                     text = state.passwordError ?: "",
@@ -211,23 +237,23 @@ fun SignupScreen(
                         .padding(start = 16.dp, top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Confirm Password Field
             var confirmPasswordVisible by remember { mutableStateOf(false) }
-            
+
             OutlinedTextField(
                 value = state.confirmPassword,
                 onValueChange = viewModel::onConfirmPasswordChange,
                 label = { Text("Confirm Password") },
-                visualTransformation = if (confirmPasswordVisible) VisualTransformation.None 
-                    else PasswordVisualTransformation(),
+                visualTransformation = if (confirmPasswordVisible) VisualTransformation.None
+                else PasswordVisualTransformation(),
                 trailingIcon = {
                     IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
                         Icon(
-                            imageVector = if (confirmPasswordVisible) Icons.Default.Visibility 
-                                else Icons.Default.VisibilityOff,
+                            imageVector = if (confirmPasswordVisible) Icons.Default.Visibility
+                            else Icons.Default.VisibilityOff,
                             contentDescription = if (confirmPasswordVisible) "Hide password" else "Show password"
                         )
                     }
@@ -246,7 +272,7 @@ fun SignupScreen(
                 ),
                 isError = state.confirmPasswordError != null
             )
-            
+
             AnimatedVisibility(visible = state.confirmPasswordError != null) {
                 Text(
                     text = state.confirmPasswordError ?: "",
@@ -257,9 +283,9 @@ fun SignupScreen(
                         .padding(start = 16.dp, top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             // Sign Up Button
             Button(
                 onClick = viewModel::onSignupClick,
@@ -280,9 +306,9 @@ fun SignupScreen(
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             // Login Link
             Row(
                 horizontalArrangement = Arrangement.Center,
@@ -302,7 +328,7 @@ fun SignupScreen(
                         .padding(4.dp)
                 )
             }
-            
+
             // Error Snackbar
             AnimatedVisibility(visible = state.error != null) {
                 Card(
@@ -322,7 +348,7 @@ fun SignupScreen(
                     )
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(32.dp))
         }
     }
