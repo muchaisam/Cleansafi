@@ -53,6 +53,9 @@ fun AppNavigation(initialOrderId: Long? = null) {
                     },
                     onNavigateToAuth = {
                         navController.navigate("login") { popUpTo("splash") { inclusive = true } }
+                    },
+                    onNavigateToHome = {
+                        navController.navigate("home") { popUpTo("splash") { inclusive = true } }
                     }
             )
         }
