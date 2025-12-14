@@ -17,7 +17,7 @@ data class PlaceOrderState(
 ) {
     val hasItems: Boolean
         get() = itemQuantities.values.any { it > 0 }
-    
+
     val totalItems: Int
         get() = itemQuantities.values.sum()
 }
