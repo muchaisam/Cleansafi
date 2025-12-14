@@ -6,22 +6,22 @@ import com.cleansafi.core.util.PreferencesManager
 import com.cleansafi.domain.repository.OrderRepository
 import com.cleansafi.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel
 @Inject
 constructor(
-        private val userRepository: UserRepository,
-        private val orderRepository: OrderRepository,
-        private val preferencesManager: PreferencesManager,
-        private val themeManager: com.cleansafi.core.theme.ThemeManager
+    private val userRepository: UserRepository,
+    private val orderRepository: OrderRepository,
+    private val preferencesManager: PreferencesManager,
+    private val themeManager: com.cleansafi.core.theme.ThemeManager
 ) : ViewModel() {
 
     fun getThemeManager() = themeManager
@@ -38,24 +38,24 @@ constructor(
 
         viewModelScope.launch {
             combine(
-                            userRepository.observeCurrentUser(userId),
-                            orderRepository.observeUserOrders(userId),
-                            orderRepository.observeTotalSpent(userId)
-                    ) { user, orders, totalSpent ->
+                userRepository.observeCurrentUser(userId),
+                orderRepository.observeUserOrders(userId),
+                orderRepository.observeTotalSpent(userId)
+            ) { user, orders, totalSpent ->
                 ProfileState(
-                        user = user,
-                        isLoading = false,
-                        totalOrders = orders.size,
-                        totalSpent = totalSpent,
-                        error = null
+                    user = user,
+                    isLoading = false,
+                    totalOrders = orders.size,
+                    totalSpent = totalSpent,
+                    error = null
                 )
             }
-                    .catch { e ->
-                        _state.update {
-                            it.copy(error = e.message ?: "Error loading profile", isLoading = false)
-                        }
+                .catch { e ->
+                    _state.update {
+                        it.copy(error = e.message ?: "Error loading profile", isLoading = false)
                     }
-                    .collect { newState -> _state.value = newState }
+                }
+                .collect { newState -> _state.value = newState }
         }
     }
 
@@ -69,11 +69,11 @@ constructor(
     fun cancelEdit() {
         _state.update {
             it.copy(
-                    isEditMode = false,
-                    editName = "",
-                    editPhoneNumber = "",
-                    nameError = null,
-                    phoneError = null
+                isEditMode = false,
+                editName = "",
+                editPhoneNumber = "",
+                nameError = null,
+                phoneError = null
             )
         }
     }
@@ -96,19 +96,19 @@ constructor(
                 val user = _state.value.user ?: throw Exception("User not found")
 
                 val updatedUser =
-                        user.copy(
-                                name = _state.value.editName.trim(),
-                                phoneNumber = _state.value.editPhoneNumber.trim()
-                        )
+                    user.copy(
+                        name = _state.value.editName.trim(),
+                        phoneNumber = _state.value.editPhoneNumber.trim()
+                    )
 
                 userRepository.updateUser(updatedUser)
 
                 _state.update {
                     it.copy(
-                            isSaving = false,
-                            isEditMode = false,
-                            editName = "",
-                            editPhoneNumber = ""
+                        isSaving = false,
+                        isEditMode = false,
+                        editName = "",
+                        editPhoneNumber = ""
                     )
                 }
             } catch (e: Exception) {
