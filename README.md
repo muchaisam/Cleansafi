@@ -157,25 +157,29 @@ implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
 <div align="center">
 
-### Authentication & Onboarding
+### Home & Place Order
 <p float="left">
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen1.jpg" width="200" />
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen2.jpg" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/home.png" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/order.png" width="200" />
 </p>
 
-### Home & Services
+### Cart & Checkout
 <p float="left">
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen3.jpg" width="200" />
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen4.jpg" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/cart.png" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/checkout.png" width="200" />
 </p>
 
-### Order Flow
+### M-PESA Payment Flow
 <p float="left">
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen5.jpg" width="200" />
-  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/Screen6.jpg" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/pay.png" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/pay_simulate.png" width="200" />
 </p>
 
-*More screenshots and dark mode preview coming soon*
+### Orders & Profile
+<p float="left">
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/orders.png" width="200" />
+  <img src="https://github.com/muchaisam/Cleansafi/blob/main/Images/profile.png" width="200" />
+</p>
 
 </div>
 
