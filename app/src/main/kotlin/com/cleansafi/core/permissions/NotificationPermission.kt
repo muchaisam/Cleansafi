@@ -16,7 +16,12 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,7 +35,7 @@ fun rememberNotificationPermission(
     val hasPermission = remember {
         mutableStateOf(context.hasNotificationPermission())
     }
-    
+
     val launcher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -41,7 +46,7 @@ fun rememberNotificationPermission(
             onPermissionDenied()
         }
     }
-    
+
     return remember {
         NotificationPermissionState(
             hasPermission = hasPermission.value,
@@ -65,7 +70,7 @@ class NotificationPermissionState(
             onPermissionChange(true) // Granted by default on older versions
         }
     }
-    
+
     fun shouldShowRationale(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return ActivityCompat.shouldShowRequestPermissionRationale(
@@ -75,7 +80,7 @@ class NotificationPermissionState(
         }
         return false
     }
-    
+
     fun openSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
             data = Uri.fromParts("package", context.packageName, null)
@@ -90,11 +95,11 @@ fun NotificationPermissionDialog(
     onDismiss: () -> Unit
 ) {
     var showRationale by remember { mutableStateOf(false) }
-    
+
     LaunchedEffect(Unit) {
         showRationale = permissionState.shouldShowRationale()
     }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
         icon = { androidx.compose.material.icons.Icons.Default.Notifications },
