@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-    
+
     @Provides
     @Singleton
     fun provideCleanSafiDatabase(
@@ -32,27 +32,27 @@ object DatabaseModule {
             .fallbackToDestructiveMigration()
             .build()
     }
-    
+
     @Provides
     fun provideUserDao(database: CleanSafiDatabase): UserDao {
         return database.userDao()
     }
-    
+
     @Provides
     fun provideOrderDao(database: CleanSafiDatabase): OrderDao {
         return database.orderDao()
     }
-    
+
     @Provides
     fun provideCartDao(database: CleanSafiDatabase): CartDao {
         return database.cartDao()
     }
-    
+
     @Provides
     fun providePaymentDao(database: CleanSafiDatabase): PaymentDao {
         return database.paymentDao()
     }
-    
+
     @Provides
     fun provideOrderStatusHistoryDao(database: CleanSafiDatabase): OrderStatusHistoryDao {
         return database.orderStatusHistoryDao()
