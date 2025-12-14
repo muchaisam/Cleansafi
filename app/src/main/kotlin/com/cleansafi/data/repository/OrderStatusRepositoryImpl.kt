@@ -16,13 +16,13 @@ class OrderStatusRepositoryImpl @Inject constructor(
     private val orderDao: OrderDao,
     private val orderStatusHistoryDao: OrderStatusHistoryDao
 ) : OrderStatusRepository {
-    
+
     override suspend fun updateOrderStatus(orderId: Long, status: OrderStatus, note: String?) {
         // Update order status
         val orderWithItems = orderDao.getOrderById(orderId) ?: return
         val updatedOrder = orderWithItems.order.copy(status = status.name)
         orderDao.updateOrder(updatedOrder)
-        
+
         // Record status change in history
         val historyEntry = OrderStatusHistoryEntity(
             orderId = orderId,
@@ -32,29 +32,29 @@ class OrderStatusRepositoryImpl @Inject constructor(
         )
         orderStatusHistoryDao.insertStatusUpdate(historyEntry)
     }
-    
+
     override suspend fun getOrderStatusHistory(orderId: Long): List<OrderStatusUpdate> {
         return orderStatusHistoryDao.getOrderHistory(orderId).map { it.toDomain() }
     }
-    
+
     override fun observeOrderStatusHistory(orderId: Long): Flow<List<OrderStatusUpdate>> {
         return orderStatusHistoryDao.observeOrderHistory(orderId).map { entities ->
             entities.map { it.toDomain() }
         }
     }
-    
+
     override suspend fun progressOrderToNextStatus(orderId: Long) {
         val orderWithItems = orderDao.getOrderById(orderId) ?: return
         val currentStatus = OrderStatus.valueOf(orderWithItems.order.status)
         val nextStatus = currentStatus.nextStatus() ?: return
-        
+
         updateOrderStatus(
             orderId = orderId,
             status = nextStatus,
             note = "Status automatically progressed"
         )
     }
-    
+
     private fun OrderStatusHistoryEntity.toDomain(): OrderStatusUpdate {
         return OrderStatusUpdate(
             orderId = orderId,
