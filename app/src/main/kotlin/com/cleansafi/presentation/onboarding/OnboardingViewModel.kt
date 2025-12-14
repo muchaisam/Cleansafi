@@ -14,23 +14,23 @@ import javax.inject.Inject
 class OnboardingViewModel @Inject constructor(
     private val preferencesManager: PreferencesManager
 ) : ViewModel() {
-    
+
     private val _state = MutableStateFlow(OnboardingState())
     val state = _state.asStateFlow()
-    
+
     init {
         checkOnboardingStatus()
     }
-    
+
     private fun checkOnboardingStatus() {
         val completed = preferencesManager.hasCompletedOnboarding
         _state.update { it.copy(hasCompletedOnboarding = completed) }
     }
-    
+
     fun onPageChange(page: Int) {
         _state.update { it.copy(currentPage = page) }
     }
-    
+
     fun completeOnboarding() {
         viewModelScope.launch {
             preferencesManager.hasCompletedOnboarding = true
