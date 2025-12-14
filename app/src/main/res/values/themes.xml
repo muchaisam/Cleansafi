@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base app theme -->
     <style name="Theme.CleanSafi" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    
+    <!-- Splash screen theme - matches animated splash colors -->
+    <style name="Theme.CleanSafi.Splash" parent="Theme.SplashScreen">
+        <!-- Primary color - teal from our theme -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+        <item name="postSplashScreenTheme">@style/Theme.CleanSafi</item>
     </style>
 </resources>
