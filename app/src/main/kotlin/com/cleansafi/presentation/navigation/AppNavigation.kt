@@ -7,9 +7,11 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.cleansafi.presentation.auth.login.LoginScreen
 import com.cleansafi.presentation.auth.signup.SignupScreen
 import com.cleansafi.presentation.cart.CartScreen
@@ -127,7 +129,14 @@ fun AppNavigation(initialOrderId: Long? = null) {
             )
         }
 
-        composable("payment/{orderId}/{amount}") {
+        composable(
+                route = "payment/{orderId}/{amount}",
+                arguments =
+                        listOf(
+                                navArgument("orderId") { type = NavType.LongType },
+                                navArgument("amount") { type = NavType.IntType }
+                        )
+        ) {
             PaymentScreen(
                     onNavigateBack = { navController.popBackStack() },
                     onPaymentSuccess = {
