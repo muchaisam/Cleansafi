@@ -15,21 +15,21 @@ import javax.inject.Singleton
 class OrderRepositoryImpl @Inject constructor(
     private val orderDao: OrderDao
 ) : OrderRepository {
-    
+
     override fun observeUserOrders(userId: String): Flow<List<Order>> {
         return orderDao.observeUserOrders(userId).map { ordersWithItems ->
             ordersWithItems.map { it.toDomain() }
         }
     }
-    
+
     override suspend fun getUserOrders(userId: String): List<Order> {
         return orderDao.getUserOrders(userId).map { it.toDomain() }
     }
-    
+
     override suspend fun getOrderById(orderId: Long): Order? {
         return orderDao.getOrderById(orderId)?.toDomain()
     }
-    
+
     override suspend fun createOrder(order: Order): Result<Long> {
         return try {
             val orderId = orderDao.insertOrderWithItems(
@@ -41,15 +41,15 @@ class OrderRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
-    
+
     override suspend fun updateOrderStatus(orderId: Long, status: OrderStatus) {
         val orderWithItems = orderDao.getOrderById(orderId)
             ?: throw Exception("Order not found")
-        
+
         val updatedOrder = orderWithItems.order.copy(status = status.name)
         orderDao.updateOrder(updatedOrder)
     }
-    
+
     override fun observeTotalSpent(userId: String): Flow<Int> {
         return orderDao.observeTotalSpent(userId).map { it ?: 0 }
     }
