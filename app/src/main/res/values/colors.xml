@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash screen background - matches our primary color from Theme -->
+    <color name="splash_background">#0061A4</color>
+</resources>
