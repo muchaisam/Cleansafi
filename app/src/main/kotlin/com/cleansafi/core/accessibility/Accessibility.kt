@@ -18,7 +18,7 @@ object ContentDescriptions {
     const val NAVIGATE_TO_CART = "Go to cart"
     const val NAVIGATE_TO_PROFILE = "Go to profile"
     const val NAVIGATE_TO_ORDERS = "Go to orders"
-    
+
     // Actions
     const val ADD_TO_CART = "Add item to cart"
     const val REMOVE_FROM_CART = "Remove item from cart"
@@ -28,24 +28,24 @@ object ContentDescriptions {
     const val PROCEED_TO_CHECKOUT = "Proceed to checkout"
     const val PAY_NOW = "Pay now"
     const val RETRY = "Retry action"
-    
+
     // Form fields
     const val EMAIL_INPUT = "Email address input"
     const val PASSWORD_INPUT = "Password input"
     const val PHONE_INPUT = "Phone number input"
     const val NAME_INPUT = "Name input"
     const val ADDRESS_INPUT = "Address input"
-    
+
     // Status indicators
     const val LOADING = "Loading content"
     const val ERROR_OCCURRED = "Error occurred"
     const val SUCCESS = "Action completed successfully"
     const val OFFLINE = "You are currently offline"
-    
+
     // Theme
     const val TOGGLE_DARK_MODE = "Toggle dark mode"
     const val TOGGLE_LIGHT_MODE = "Toggle light mode"
-    
+
     // Notifications
     const val NOTIFICATION_PERMISSION_REQUIRED = "Notification permission required"
     const val ENABLE_NOTIFICATIONS = "Enable notifications"
